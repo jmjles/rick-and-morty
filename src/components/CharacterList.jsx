@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import {
   Card,
   Paper,
@@ -7,18 +7,20 @@ import {
   Typography as Font
 } from "@material-ui/core";
 import Character from "./Character";
-export default function CharacterList({char}) {
-    const [characters,setCharacters] = useState(char)
-  return (
-      <Container maxWidth='lg'>
-      <Grid container justify='space-evenly' spacing={10}>
-            {
-                characters.map(character=>(
-                    <Character char={character}/>
-                ))
-            }
-      </Grid>
-      </Container>
+import Search from "./Search";
+export default function CharacterList({ char }) {
+  const [search, setSearch] = useState("");
+  const exp = new RegExp(search, "gi");
+  const filtered = char.filter(({ name }) => name.match(exp));
 
+  return (
+    <Container maxWidth="lg">
+      <Search setSearch={setSearch} content={search} />
+      <Grid container justify="space-evenly" spacing={10}>
+        {filtered.map(character => (
+          <Character char={character} />
+        ))}
+      </Grid>
+    </Container>
   );
 }
