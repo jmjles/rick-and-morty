@@ -3,13 +3,15 @@ import axios from "axios";
 import { Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
-import CharacterList from './components/CharacterList'
+import CharacterList from "./components/CharacterList";
+import LocationList from "./components/LocationList";
 function App() {
   const [characters, setCharacters] = useState();
   const [locations, setLocations] = useState();
   const [nextCharLink, setNextCharLink] = useState();
-  const [rick,setRick] = useState()
-  const [morty,setMorty] = useState()
+  const [nextLocationLink, setNextLocationLink] = useState();
+  const [rick, setRick] = useState();
+  const [morty, setMorty] = useState();
   useEffect(() => {
     (async () => {
       try {
@@ -47,38 +49,59 @@ function App() {
   }, [nextCharLink]);
 
   useEffect(() => {
-    if(characters){
-    setRick(characters.filter(({ id }) => id === 1));
-    setMorty(characters.filter(({ id }) => id === 2));
+    if (characters) {
+      setRick(characters.filter(({ id }) => id === 1));
+      setMorty(characters.filter(({ id }) => id === 2));
     }
   }, [characters]);
-  useEffect(() => {
-    const getLocations = async () => {
-      let {
-        data: {
-          results,
-          info: { next }
-        }
-      } = await axios("https://rickandmortyapi.com/api/location");
-      setLocations(results);
-      while (next) {
-        let { data } = await axios(next);
-        next = data.info.next;
-        results.map(location => {
-          setLocations(prev => [...prev, location]);
-        });
-      }
-    };
 
-    getLocations();
+  useEffect(() => {
+    (async () => {
+      try {
+        let {
+          data: {
+            results,
+            info: { next }
+          }
+        } = await axios("https://rickandmortyapi.com/api/location");
+        setLocations(results);
+        setNextLocationLink(next);
+      } catch (er) {
+        console.log(er);
+      }
+    })();
   }, []);
+
+  useEffect(() => {
+    try {
+      if (nextLocationLink) {
+        (async () => {
+          const {
+            data: {
+              results,
+              info: { next }
+            }
+          } = await axios(nextLocationLink);
+          setLocations(prev => [...prev, ...results]);
+          setNextLocationLink(next);
+        })();
+      }
+    } catch (er) {
+      console.log(er);
+    }
+  }, [nextLocationLink]);
+
   return (
     <div className="App">
       <Header />
       <Switch>
         <Route
           path="/characters"
-          children={characters ? <CharacterList char={characters}/> : <></>}
+          children={characters ? <CharacterList char={characters} /> : <></>}
+        />
+        <Route
+          path="/locations"
+          children={locations ? <LocationList locations={locations} /> : <></>}
         />
         <Route
           path="/"

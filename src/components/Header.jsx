@@ -16,7 +16,7 @@ export default function Header() {
           </Button>
         </Grid>
         <Grid item>
-          <Button component={Link} to="/characters">
+          <Button component={Link} to="/locations">
             <Font variant="button">Locations</Font>
           </Button>
         </Grid>
