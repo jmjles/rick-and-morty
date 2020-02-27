@@ -11,9 +11,9 @@ export default function LocationList({ locations }) {
   const filtered = locations.filter(({ name }) => name.match(exp));
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" style={{ paddingTop: "66px" }}>
       <Search setSearch={setSearch} content={search} />
-      <Grid container direction='row' spacing={2}>
+      <Grid container direction="row" spacing={2}>
         {filtered.map(location => (
           <Location location={location} />
         ))}

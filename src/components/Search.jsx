@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Input,
-  Button,
-  Typography as Font,
   Container
 } from "@material-ui/core";
 export default function Search({ search,setSearch}) {
@@ -14,11 +12,8 @@ export default function Search({ search,setSearch}) {
 };
   return (
     <Container maxWidth='lg'>
-      <form onSubmit={here => handleSubmit(here)}>
-        <Input value={search} onChange={here => handleChange(here)} />
-        <Button>
-          <Font variant="button">Search</Font>
-        </Button>
+      <form onSubmit={here => handleSubmit(here)} style={{textAlign:'center'}}>
+        <Input value={search} onChange={here => handleChange(here)} placeholder='Enter Name'/>
       </form>
     </Container>
   );
