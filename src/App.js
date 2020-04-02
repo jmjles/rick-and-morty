@@ -12,6 +12,8 @@ function App() {
   const [nextLocationLink, setNextLocationLink] = useState();
   const [rick, setRick] = useState();
   const [morty, setMorty] = useState();
+
+  const api = axios.create({ baseURL: "https://rickandmortyapi.com/api/" });
   useEffect(() => {
     (async () => {
       try {
@@ -20,7 +22,11 @@ function App() {
             results,
             info: { next }
           }
-        } = await axios("https://rickandmortyapi.com/api/character");
+        } = await api("character", {
+          params: {
+            count: 20
+          }
+        });
         setCharacters(results);
         setNextCharLink(next);
       } catch (er) {
@@ -28,7 +34,6 @@ function App() {
       }
     })();
   }, []);
-
   useEffect(() => {
     (async () => {
       if (nextCharLink) {
@@ -58,12 +63,12 @@ function App() {
   useEffect(() => {
     (async () => {
       try {
-        let {
+        const {
           data: {
             results,
             info: { next }
           }
-        } = await axios("https://rickandmortyapi.com/api/location");
+        } = await api("location");
         setLocations(results);
         setNextLocationLink(next);
       } catch (er) {
