@@ -1,0 +1,33 @@
+@import "./variables";
+
+.HeaderRoot {
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: $navColor;
+    padding: 1rem;
+    #nav-items {
+      > div {
+        display: none;
+        @media (min-width: 800px) {
+          display: inline-block;
+        }
+      }
+      #logo-container {
+        vertical-align: baseline;
+        display: inline-block;
+        img {
+          width: 42px;
+        }
+      }
+      #menu-container {
+        display: inline-block;
+        margin-left: auto;
+        @media (min-width: 800px) {
+          display: none;
+        }
+      }
+    }
+  }
+}

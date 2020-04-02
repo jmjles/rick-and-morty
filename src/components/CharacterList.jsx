@@ -8,11 +8,11 @@ export default function CharacterList({ char }) {
   const filtered = char.filter(({ name }) => name.match(exp));
 
   return (
-    <Container maxWidth="lg" style={{ paddingTop: "66px" }}>
+    <Container maxWidth="lg" style={{ marginTop: "99px" }}>
       <Search setSearch={setSearch} content={search} />
       <Grid container justify="space-evenly" spacing={5}>
         {filtered.map(character => (
-          <Character char={character} />
+          <Character char={character} key={character.id} />
         ))}
       </Grid>
     </Container>

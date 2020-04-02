@@ -1,0 +1,82 @@
+.CharacterRoot > div {
+  margin: 1rem 0;
+  height: 497px;
+}
+
+.CharacterRoot h3 {
+  padding: 0.5rem 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.CharacterRoot h3:hover {
+  overflow: visible;
+  white-space: normal;
+  text-overflow: unset;
+}
+
+.CharacterRoot img {
+  height: 300px;
+}
+
+.SideBarRoot {
+  position: fixed;
+  right: 0;
+  top: 79px;
+  height: 100%;
+  width: 0;
+  overflow: hidden;
+  background-color: #414c51;
+}
+
+.SideBarRoot div {
+  padding: 0.5rem 1.5rem;
+  border-bottom: white solid 1px;
+  min-width: 132.05px;
+  text-align: center;
+}
+
+.SideBarRoot a {
+  color: white;
+  text-decoration: none;
+}
+
+.HeaderRoot nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #414c51;
+  padding: 1rem;
+}
+
+.HeaderRoot nav #nav-items > div {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .HeaderRoot nav #nav-items > div {
+    display: inline-block;
+  }
+}
+
+.HeaderRoot nav #nav-items #logo-container {
+  vertical-align: baseline;
+  display: inline-block;
+}
+
+.HeaderRoot nav #nav-items #logo-container img {
+  width: 42px;
+}
+
+.HeaderRoot nav #nav-items #menu-container {
+  display: inline-block;
+  margin-left: auto;
+}
+
+@media (min-width: 800px) {
+  .HeaderRoot nav #nav-items #menu-container {
+    display: none;
+  }
+}
+/*# sourceMappingURL=index.css.map */
